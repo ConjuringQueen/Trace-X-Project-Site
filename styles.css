@@ -19,3 +19,16 @@ body{background-color:var(--bg);background-image:linear-gradient(#ffffff04 1px,t
 .section-dark{background:#15110e;border-color:#4b3322}.roadmap-note{background:#ff781f0c;border-color:#ff781f55;border-radius:2px}.roadmap-note>span,.roadmap-num{color:#ff781f}.roadmap-note strong{color:#ffd1a6}.roadmap-state{color:#ffc08b;border-color:#ff781f55;border-radius:2px}.roadmap-state.pending{color:#a08e7f;border-color:#5c4838}.footer{background:#0d0b09;border-color:#4b3322}
 @media(max-width:650px){.topbar nav{background:#100e0c}.menu-toggle{color:#ff9a54}}
 ::selection{background:#ff781f;color:#17100c}
+.team-section{background:radial-gradient(ellipse at 87% 35%,#ff781f0c,transparent 35%),#100e0c;border-block:1px solid #4b3322}
+.team-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.team-card{min-height:230px;position:relative;padding:20px 18px;background:#17130f;border:1px solid #51341f;border-radius:2px;overflow:hidden}
+.team-card::after{content:'';position:absolute;width:78px;height:78px;right:-28px;bottom:-30px;border:1px solid #ff781f38;transform:rotate(45deg)}
+.team-number{font:9px var(--mono);letter-spacing:.08em;color:#ff9a54}
+.team-initials{width:43px;height:43px;margin:22px 0 15px;display:grid;place-items:center;background:#ff781f;color:#17100c;font:700 14px var(--mono);clip-path:polygon(0 0,100% 0,100% 72%,72% 100%,0 100%)}
+.team-card h3{font:700 16px var(--display);margin:0 0 8px;letter-spacing:-.02em}
+.team-card p{min-height:38px;margin:0;color:#b4aaa0;font-size:12px;line-height:1.6}
+.team-focus{display:inline-block;margin-top:16px;padding:5px 7px;border:1px solid #ff781f44;color:#ffad70;font:8px var(--mono);letter-spacing:.08em}
+.team-note{margin:14px 0 0;color:#897d71;font:10px var(--mono)}
+@media(max-width:850px){.team-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.team-grid{grid-template-columns:1fr 1fr;gap:8px}.team-card{min-height:215px;padding:15px 12px}.team-card h3{font-size:14px}.team-card p{font-size:11px}.team-focus{font-size:7px}}
+@media(max-width:390px){.team-grid{grid-template-columns:1fr}.team-card{min-height:0}.team-initials{margin-top:14px}}
