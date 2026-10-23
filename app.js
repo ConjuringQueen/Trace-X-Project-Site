@@ -31,4 +31,33 @@ document.addEventListener('DOMContentLoaded', () => {
     menu.setAttribute('aria-expanded', 'false');
     menu.setAttribute('aria-label', 'Open navigation');
   }));
+
+  // Website-only demo: replace this sample generator with the shared data feed
+  // after the Pi/dashboard team confirms its address and reading format.
+  const demoFields = Object.fromEntries(
+    [...document.querySelectorAll('[data-reading]')].map((element) => [element.dataset.reading, element])
+  );
+  if (demoFields.temperature) {
+    const demo = { temperature: 26.4, rpm: 842, vibration: 0.18, voltage: 12.1, current: 0.42, runtimeSeconds: 5072 };
+    const vary = (value, amount, min, max) => Math.min(max, Math.max(min, value + (Math.random() * 2 - 1) * amount));
+    const updateDemoReadings = () => {
+      demo.temperature = vary(demo.temperature, 0.15, 24, 31);
+      demo.rpm = Math.round(vary(demo.rpm, 18, 780, 900));
+      demo.vibration = vary(demo.vibration, 0.015, 0.08, 0.35);
+      demo.voltage = vary(demo.voltage, 0.08, 11.5, 12.7);
+      demo.current = vary(demo.current, 0.025, 0.25, 0.7);
+      demo.runtimeSeconds += 2;
+      demoFields.temperature.textContent = demo.temperature.toFixed(1);
+      demoFields.rpm.textContent = String(demo.rpm);
+      demoFields.vibration.textContent = demo.vibration.toFixed(2);
+      demoFields.voltage.textContent = demo.voltage.toFixed(1);
+      demoFields.current.textContent = demo.current.toFixed(2);
+      const hours = String(Math.floor(demo.runtimeSeconds / 3600)).padStart(2, '0');
+      const minutes = String(Math.floor((demo.runtimeSeconds % 3600) / 60)).padStart(2, '0');
+      const seconds = String(demo.runtimeSeconds % 60).padStart(2, '0');
+      demoFields.runtime.textContent = `${hours}:${minutes}:${seconds}`;
+      demoFields.updated.textContent = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', second: '2-digit' });
+    };
+    window.setInterval(updateDemoReadings, 2000);
+  }
 });
